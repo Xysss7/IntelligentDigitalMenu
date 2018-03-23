@@ -38,6 +38,9 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ImageView editProfileImage	= (ImageView) findViewById(R.id.iv_image);
+        profileImage = editProfileImage;
+
     }
 
 

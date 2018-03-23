@@ -84,6 +84,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
             }
         });
 
+
         //check and register the account information to database
         //if successful then..show the log in page
         Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
