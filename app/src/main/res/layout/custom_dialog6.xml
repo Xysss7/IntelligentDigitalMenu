@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="土豆丝"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:src="@drawable/image7"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/Profile"
+        android:layout_width="400dp"
+        android:layout_height="150sp"
+        android:gravity="center"
+        android:text="土豆丝是由土豆为主要食材做成的一道菜品，属于大众菜。常吃土豆能及时地给体内补充所需 求的钾元素;土豆中的维生素C除对大脑细胞具有保健作用。"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/Exit"
+        android:layout_marginLeft="140dp"
+        android:layout_width="100dp"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="OK"
+        android:textSize="20sp" />
+</LinearLayout>

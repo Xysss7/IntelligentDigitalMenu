@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="地三鲜"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:src="@drawable/image9"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/Profile"
+        android:layout_width="400dp"
+        android:layout_height="150sp"
+        android:gravity="center"
+        android:text="地三鲜是一道东北传统名菜，制作材料是三种地里时令新鲜的食材：茄子、土豆和青椒。它不仅在于鲜浓的味道、天然绿色的食材，更胜于它涵盖多种食材的营养，让三味非常普通的食材做成鲜爽无比的佳肴。"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/Exit"
+        android:layout_marginLeft="140dp"
+        android:layout_width="100dp"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="OK"
+        android:textSize="20sp" />
+</LinearLayout>

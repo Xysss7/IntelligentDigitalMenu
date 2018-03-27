@@ -29,16 +29,20 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, View.OnClickListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -60,8 +64,11 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private EditText mPasswordViewAgain;
+
     private View mProgressView;
     private View mLoginFormView;
+    private int _customer_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +80,17 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordViewAgain = (EditText) findViewById(R.id.password_again);
+
+        _customer_id = 0;
+        Intent intent = getIntent();
+        _customer_id = intent.getIntExtra("customer_Id", 0);
+        CustomerRepo repo = new CustomerRepo(this);
+        Customer customer = new Customer();
+        customer = repo.getCustomerById(_customer_id);
+
+        mEmailView.setText(customer.email);
+        mPasswordView.setText(customer.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -88,16 +106,11 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         //check and register the account information to database
         //if successful then..show the log in page
         Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
-        mEmailSignUpButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+        mEmailSignUpButton.setOnClickListener(this);
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
     }
 
     private void populateAutoComplete() {
@@ -167,10 +180,13 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mPasswordViewAgain.setError(null);
+
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String passwordAgain = mPasswordViewAgain.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -179,6 +195,12 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
+            cancel = true;
+        }
+
+        if (password != passwordAgain) {
+            mPasswordViewAgain.setError(getString(R.string.error_invalid_password_again));
+            focusView = mPasswordViewAgain;
             cancel = true;
         }
 
@@ -200,6 +222,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
@@ -207,8 +230,16 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        boolean flag = false;
+        try{
+            String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+            Pattern regex = Pattern.compile(check);
+            Matcher matcher = regex.matcher(email);
+            flag = matcher.matches();
+        }catch(Exception e){
+            flag = false;
+        }
+        return flag;
     }
 
     private boolean isPasswordValid(String password) {
@@ -326,7 +357,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return false;
             }
@@ -360,6 +391,36 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+    }
+    @Override
+    public void onClick(View v)
+    {
+        if (v == findViewById(R.id.email_sign_up_button)) {
+            CustomerRepo repo = new CustomerRepo(this);
+            Customer customer = new Customer();
+            customer.email =mEmailView.getText().toString();
+            String Email = mEmailView.getText().toString();
+            customer.password =  mPasswordView.getText().toString();
+            customer.customer_ID = _customer_id;
+            if (repo.CheckIsDataAlreadyInDBorNot(Email)) {
+                Toast.makeText(this, "This email has been signed up,please use another one!", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                if (_customer_id == 0) {
+                    _customer_id = repo.insert(customer);
+
+                    Toast.makeText(this, "Signed up success", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(SignUpActivity.this,MainActivity.class);
+                    startActivity(i);
+                } else {
+                    repo.update(customer);
+                    Toast.makeText(this, "Signed up success", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(SignUpActivity.this,MainActivity.class);
+                    startActivity(i);
+                }
+
+            }
         }
     }
 }

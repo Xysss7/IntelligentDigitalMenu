@@ -9,6 +9,9 @@ import android.content.Context;
 
 
 public class DBHelper extends SQLiteOpenHelper {
+
+
+
     //数据库版本号
     private static final int DATABASE_VERSION=4;
 
@@ -24,9 +27,8 @@ public class DBHelper extends SQLiteOpenHelper {
         //创建数据表
         String CREATE_TABLE_Customer="CREATE TABLE "+ Customer.TABLE+"("
                 +Customer.KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                +Customer.KEY_name+" TEXT, "
-                +Customer.KEY_age+" INTEGER, "
-                +Customer.KEY_email+" TEXT)";
+                +Customer.KEY_email+" TEXT, "
+                +Customer.KEY_password+" TEXT)";
         db.execSQL(CREATE_TABLE_Customer);
     }
 

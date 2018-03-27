@@ -27,6 +27,9 @@ import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import android.widget.ImageView;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -37,6 +40,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected static final int TAKE_PICTURE = 1;
     protected static Uri tempUri;
     private static final int CROP_SMALL_PICTURE = 2;
+    protected ImageView avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private void initUI() {
         mImage= (ImageView) findViewById(R.id.iv_image);
         mAddImage= (Button) findViewById(R.id.btn_add_image);
+        avatar = findViewById(R.id.avatar);
     }
     private void initListeners() {
         mAddImage.setOnClickListener(new View.OnClickListener() {
@@ -75,8 +80,8 @@ public class EditProfileActivity extends AppCompatActivity {
      */
     protected void showChoosePicDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
-        builder.setTitle("添加图片");
-        String[] items = { "Choose from albun", "Take a photo" };
+        builder.setTitle("Change");
+        String[] items = { "Choose from album", "Take a photo" };
         builder.setNegativeButton("Cancel", null);
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
@@ -156,8 +161,69 @@ public class EditProfileActivity extends AppCompatActivity {
             mImage.setImageBitmap(mBitmap);//显示图片
             //((ImageView) findViewById(R.id.avatar)).setImageBitmap(mBitmap);
                 //在这个地方可以写上上传该图片到服务器的代码，后期将单独写一篇这方面的博客，敬请期待...
+            //avatar.setImageBitmap(mBitmap);
+            saveImage(mBitmap);
         }
     }
+    /**
+     * 数据的存储。（5种）
+     * Bimap:内存层面的图片对象。
+     *
+     * 存储--->内存：
+     *   BitmapFactory.decodeFile(String filePath);
+     *   BitmapFactory.decodeStream(InputStream is);
+     * 内存--->存储：
+     *   bitmap.compress(Bitmap.CompressFormat.PNG,100,OutputStream os);
+     */
+    private void saveImage(Bitmap bitmap) {
+        File filesDir;
+        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){//判断sd卡是否挂载
+            //路径1：storage/sdcard/Android/data/包名/files
+            filesDir = this.getExternalFilesDir("");
+        }else{//手机内部存储
+            //路径：data/data/包名/files
+            filesDir = this.getFilesDir();
+        }
+        FileOutputStream fos = null;
+        try {
+            File file = new File(filesDir,"icon.png");
+            fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100,fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }finally{
+            if(fos != null){
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /** 保存方法 */
+    /*
+    public void saveBitmap() {
+        File f = new File("/drawable/namecard/", mBitmap);
+        if (f.exists()) {
+            f.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(f);
+            bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.flush();
+            out.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+    */
 
     /*
     /**

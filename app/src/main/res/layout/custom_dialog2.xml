@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="水煮肉片"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:src="@drawable/image3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/Profile"
+        android:layout_width="400dp"
+        android:layout_height="150sp"
+        android:gravity="center"
+        android:text="水煮肉片（Poached spicy slices of pork），是一道地方新创名菜，起源于自贡，发扬于西南，属于川菜中著名的家常菜[1]  。因肉片未经划油，以水煮熟故名水煮肉片"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/Exit"
+        android:layout_marginLeft="140dp"
+        android:layout_width="100dp"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="OK"
+        android:textSize="20sp" />
+</LinearLayout>

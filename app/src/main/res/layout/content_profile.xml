@@ -11,7 +11,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height"
+        android:layout_height="271dp"
         android:background="@drawable/side_nav_bar"
         android:gravity="bottom"
         android:orientation="vertical"
@@ -23,31 +23,44 @@
 
         <ImageView
             android:id="@+id/avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:layout_width="112dp"
+            android:layout_height="113dp"
             android:layout_gravity="center"
+            android:maxWidth="40dp"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
             app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:gravity="center"
-            android:text="Name"
+            android:layout_height="37dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:lineSpacingExtra="9dp"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:text="Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
             android:lineSpacingExtra="9dp"
             android:text="android.studio@android.com" />
 
+        <Button
+            android:id="@+id/log_out"
+            style="?android:textAppearanceSmall"
+            android:layout_width="353dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Log out"
+            android:textStyle="bold" />
+
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

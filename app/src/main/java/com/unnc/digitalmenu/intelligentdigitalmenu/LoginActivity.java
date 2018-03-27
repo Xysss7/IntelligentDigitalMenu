@@ -33,12 +33,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static android.Manifest.permission.READ_CONTACTS;
+import android.widget.Toast;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>,View.OnClickListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -63,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
+        //mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -85,12 +90,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
+        mEmailSignInButton.setOnClickListener(this);
 
         Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_in_log_button);
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
@@ -100,8 +100,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 startActivity(intent);
             }
         });
-
-
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -166,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+   private void attemptLogin() {
         if (mAuthTask != null) {
             return;
         }
@@ -214,8 +212,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        boolean flag = false;
+        try{
+            String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+            Pattern regex = Pattern.compile(check);
+            Matcher matcher = regex.matcher(email);
+            flag = matcher.matches();
+        }catch(Exception e){
+            flag = false;
+        }
+        return flag;
     }
 
     private boolean isPasswordValid(String password) {
@@ -333,7 +339,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return false;
             }
@@ -356,7 +362,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();
+                //finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -369,5 +375,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
+
+    public void onClick(View v){
+        if(v== findViewById(R.id.email_sign_in_button)) {
+            attemptLogin();
+            CustomerRepo repo = new CustomerRepo(this);
+            String Email = mEmailView.getText().toString();
+            String Password = mPasswordView.getText().toString();
+            if (repo.login(Email,Password)) {
+                Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(LoginActivity.this, OrderActivity.class);
+                startActivity(i);
+
+            }
+            else {
+                Toast.makeText(this, "login fail", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
+
 }
 

@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="糖醋排骨"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:src="@drawable/image4"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/Profile"
+        android:layout_width="400dp"
+        android:layout_height="150sp"
+        android:gravity="center"
+        android:text="糖醋排骨（Sweet and Sour Spare Ribs），是糖醋味型中具有代表性的一道大众喜爱的特色传统名菜。它选用新鲜猪子排作主料，肉质鲜嫩，成莱色泽红亮油润。"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/Exit"
+        android:layout_marginLeft="140dp"
+        android:layout_width="100dp"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="OK"
+        android:textSize="20sp" />
+</LinearLayout>

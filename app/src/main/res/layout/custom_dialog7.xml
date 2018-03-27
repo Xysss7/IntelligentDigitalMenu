@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="辣子鸡"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:src="@drawable/image8"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/Profile"
+        android:layout_width="400dp"
+        android:layout_height="150sp"
+        android:gravity="center"
+        android:text="辣子鸡，是一道经典的川渝地区的特色传统名肴。一般以鸡为主料，加上葱、干辣椒、花椒、盐、胡椒、味精等多种材料精制而成，营养丰富，味道鲜美，虽然是同一道菜，各地制作也各有特色。"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/Exit"
+        android:layout_marginLeft="140dp"
+        android:layout_width="100dp"
+        android:layout_height="48sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="OK"
+        android:textSize="20sp" />
+</LinearLayout>
