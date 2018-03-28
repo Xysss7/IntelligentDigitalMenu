@@ -11,34 +11,41 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="271dp"
-        android:background="@drawable/side_nav_bar"
-        android:gravity="bottom"
+        android:layout_height="match_parent"
+        android:angle="135"
+        android:centerColor="#009688"
+        android:endColor="#00695C"
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        android:startColor="#4DB6AC"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:type="linear"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <ImageView
             android:id="@+id/avatar"
-            android:layout_width="112dp"
-            android:layout_height="113dp"
+            android:layout_width="143dp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
             android:maxWidth="40dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/user" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_width="302dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:lineSpacingExtra="9dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -47,15 +54,17 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:lineSpacingExtra="9dp"
-            android:text="android.studio@android.com" />
+            android:text="android.studio@android.com"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/log_out"
-            style="?android:textAppearanceSmall"
+            android:background="@color/darkgray"
             android:layout_width="353dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom|center"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="16dp"
             android:text="Log out"
             android:textStyle="bold" />

@@ -17,10 +17,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.BitmapDrawable;
+import java.io.RandomAccessFile;
+import java.io.Closeable;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -31,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected static final int TAKE_PICTURE = 1;
     protected static Uri tempUri;
     private static final int CROP_SMALL_PICTURE = 2;
-    protected ImageView avatar;
+    protected ImageView avatar; //avatar of user
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +182,7 @@ public class ProfileActivity extends AppCompatActivity {
             //在这个地方可以写上上传该图片到服务器的代码，后期将单独写一篇这方面的博客，敬请期待...
             //avatar.setImageBitmap(mBitmap);
             saveImage(mBitmap);
+
         }
     }
     /**
@@ -188,8 +195,9 @@ public class ProfileActivity extends AppCompatActivity {
      * 内存--->存储：
      *   bitmap.compress(Bitmap.CompressFormat.PNG,100,OutputStream os);
      */
-    private void saveImage(Bitmap bitmap) {
+    private byte[] saveImage(Bitmap bitmap) {
         File filesDir;
+        byte[] b=null;
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){//判断sd卡是否挂载
             //路径1：storage/sdcard/Android/data/包名/files
             filesDir = this.getExternalFilesDir("");
@@ -201,18 +209,54 @@ public class ProfileActivity extends AppCompatActivity {
         try {
             File file = new File(filesDir,"icon.png");
             fos = new FileOutputStream(file);
+
             bitmap.compress(Bitmap.CompressFormat.PNG, 100,fos);
+            return readFile(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }finally{
             if(fos != null){
                 try {
                     fos.close();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+        return b;
     }
 
+    public static byte[] readFile(File file) {
+        RandomAccessFile rf = null;
+        byte[] data = null;
+        try {
+            rf = new RandomAccessFile(file, "r");
+            data = new byte[(int) rf.length()];
+            rf.readFully(data);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            closeQuietly(rf);
+        }
+        return data;
+    }
+
+    public static void closeQuietly(Closeable closeable) {
+        try {
+            if (closeable != null) {
+                closeable.close();
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
 }
+
+    //3.27
+
+
+
+
+
+
