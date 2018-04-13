@@ -393,6 +393,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
             showProgress(false);
         }
     }
+
     @Override
     public void onClick(View v)
     {

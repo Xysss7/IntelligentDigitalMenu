@@ -17,7 +17,7 @@
             android:title="History" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="not sure yet" />
         <item
             android:id="@+id/nav_manage"
@@ -28,13 +28,13 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_call"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Call" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_web"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Website" />
         </menu>
     </item>
 

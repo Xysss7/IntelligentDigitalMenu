@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -67,12 +68,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    //public MotionEvent event;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setupActionBar();
+        //dispatchTouchEvent(event);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -384,7 +388,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String Password = mPasswordView.getText().toString();
             if (repo.login(Email,Password)) {
                 Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(LoginActivity.this, OrderActivity.class);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
 
             }
