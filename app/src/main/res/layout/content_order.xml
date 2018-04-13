@@ -69,8 +69,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount1"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus1"
@@ -129,8 +135,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount2"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus2"
@@ -192,8 +204,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount3"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus3"
@@ -254,8 +272,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount4"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus4"
@@ -317,8 +341,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount5"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus5"
@@ -379,8 +409,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount6"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus6"
@@ -440,8 +476,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount7"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus7"
@@ -502,8 +544,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount8"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus8"
@@ -564,8 +612,14 @@
                                 android:background="@drawable/plus" />
 
                             <TextView
-                                android:layout_width="70dp"
-                                android:layout_height="match_parent" />
+                                android:id="@+id/etAmount9"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:layout_width="90dp"
+                                android:inputType="number"
+                                android:gravity="center"
+                                android:background="@null"
+                                android:text="0"/>
 
                             <Button
                                 android:id="@+id/buttonminus9"
