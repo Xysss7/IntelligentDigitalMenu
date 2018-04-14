@@ -380,6 +380,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    //cancel the physical back key!
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     public void onClick(View v){
         if(v== findViewById(R.id.email_sign_in_button)) {
             attemptLogin();

@@ -27,6 +27,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.BitmapDrawable;
 import java.io.RandomAccessFile;
 import java.io.Closeable;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -73,8 +75,32 @@ public class ProfileActivity extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-                startActivity(intent);
+
+                AlertDialog alert=new AlertDialog.Builder(ProfileActivity.this).create();
+                alert.setIcon(R.drawable.stop);
+                alert.setTitle("LOG OUT");
+                alert.setMessage("Really want to log out?");
+                //添加取消按钮
+                alert.setButton(DialogInterface.BUTTON_NEGATIVE,"No",new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+                //添加"确定"按钮
+                alert.setButton(DialogInterface.BUTTON_POSITIVE,"Yes", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                alert.show();
+
+
             }
         });
         initUI();
