@@ -53,7 +53,7 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
 
-            <!--             android:parentActivityName=".MainActivity"> -->
+            <!-- android:parentActivityName=".MainActivity"> -->
             <!--
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -109,7 +109,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.unnc.digitalmenu.intelligentdigitalmenu.MainActivity" />
         </activity>
-        <activity android:name=".OrdersActivity"></activity>
+        <activity android:name=".OrdersActivity" />
+        <activity
+            android:name=".MainManagerActivity"
+            android:label="@string/title_activity_main_manager"></activity>
     </application>
 
 </manifest>

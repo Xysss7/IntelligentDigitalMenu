@@ -71,6 +71,8 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView editProfileImage	= (ImageView) findViewById(R.id.iv_image);
         profileImage = editProfileImage;
         */
+
+        //ask for confirmation of log out
         Button logOut = findViewById(R.id.log_out);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,16 +82,14 @@ public class ProfileActivity extends AppCompatActivity {
                 alert.setIcon(R.drawable.stop);
                 alert.setTitle("LOG OUT");
                 alert.setMessage("Really want to log out?");
-                //添加取消按钮
+                //no
                 alert.setButton(DialogInterface.BUTTON_NEGATIVE,"No",new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-
                     }
                 });
-                //添加"确定"按钮
+                //sure to log out
                 alert.setButton(DialogInterface.BUTTON_POSITIVE,"Yes", new DialogInterface.OnClickListener() {
 
                     @Override

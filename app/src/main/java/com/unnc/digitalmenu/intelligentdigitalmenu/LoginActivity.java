@@ -396,15 +396,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String Email = mEmailView.getText().toString();
             String Password = mPasswordView.getText().toString();
             if (repo.login(Email,Password)) {
-                Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
-
-            }
-            else {
+                if(Email.equals("2572382033@qq.com")&&Password.equals("twt52030")) { //the admin account
+                    Toast.makeText(this, "Manager Login", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginActivity.this, MainManagerActivity.class);
+                    finish();
+                    startActivity(i);
+                }else {
+                    Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(i);
+                }
+            } else {
                 Toast.makeText(this, "login fail", Toast.LENGTH_SHORT).show();
             }
 
+        } else {
+            Toast.makeText(this, "login fail", Toast.LENGTH_SHORT).show();
         }
     }
 
