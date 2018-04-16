@@ -112,7 +112,14 @@
         <activity android:name=".OrdersActivity" />
         <activity
             android:name=".MainManagerActivity"
-            android:label="@string/title_activity_main_manager"></activity>
+            android:label="@string/title_activity_main_manager">
+
+        </activity>
+
+        <activity
+            android:name=".FaceLoginActivity"
+            android:label="@string/title_activity_face_login">
+        </activity>
     </application>
 
 </manifest>

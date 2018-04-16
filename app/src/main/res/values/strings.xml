@@ -5,6 +5,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_password_to_face">Change to Facial Recognition</string>
+    <string name="action_face_to_password">Change to password Log In</string>
+
+
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -37,7 +41,11 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="face_login_faceclick">Click to upload photo</string>
+    <string name="action_email_to_face">Face Recognition Log in</string>
+
     <string name="large_text">
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -204,5 +212,7 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_edit_profile">EditProfileActivity</string>
     <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_face_login">Face Rec</string>
+
     <string name="title_activity_main_manager">MainManagerActivity</string>
 </resources>
